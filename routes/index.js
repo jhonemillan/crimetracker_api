@@ -5,7 +5,7 @@ module.exports = function(passport){
   
 //   /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.sendDate();
 });
   
   router.get('/auth/google', passport.authenticate('google', {
