@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.sendDate();
 });
   
-app.get('/favicon.ico', (req, res) => res.status(204));
+router.get('/favicon.ico', (req, res) => res.status(204));
 
   router.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
