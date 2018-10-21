@@ -41,11 +41,8 @@ app.use(function(req, res, next) {
 });
 //test hrk
 app.get('/favicon.ico', (req, res) => res.status(204));
-app.use(express.static(path.join(__dirname, 'dist')));
+//app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', function(req, res, next) {
-  res.sendFile(path.join(__dirname + 'dist/index.html'));
-});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
