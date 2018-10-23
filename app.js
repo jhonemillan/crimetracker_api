@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 //test hrk
-app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.use(express.static(path.join(__dirname, 'dist/osmreport')));
 
 // error handler
