@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 });
 //test hrk
 
-app.use(express.static(path.join(__dirname, 'dist/osmreport')));
+//app.use(express.static(path.join(__dirname, 'dist/osmreport')));
 
 // error handler
 app.use(function(err, req, res, next) {
