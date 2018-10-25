@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path')
 
 module.exports = function(passport){
   
 //   /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.sendDate();
-});
-  
+
 router.get('/favicon.ico', (req, res) => res.status(204));
 
   router.get('/auth/google', passport.authenticate('google', {
@@ -15,10 +13,10 @@ router.get('/favicon.ico', (req, res) => res.status(204));
   }));
   
   router.get('/auth/google/callback',
-  passport.authenticate('google', {failureRedirect:'/login', failureFlash: true}),
+  passport.authenticate('google', {failureRedirect:'/', failureFlash: true}),
   (req, res) => {    
     req.session.user = req.user;    
-    return res.redirect('http://localhost:4200/map/' + req.user.id);
+    return res.redirect('/map/' + req.user.id);
   }
 );
 
