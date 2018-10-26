@@ -2,8 +2,9 @@
   "name": "crimetracker",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "bluebird": "^3.5.2",

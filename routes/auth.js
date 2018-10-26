@@ -6,13 +6,12 @@ module.exports = function(passport){
   
 //   /* GET users listing. */
 
-router.get('/favicon.ico', (req, res) => res.status(204));
 
-  router.get('/auth/google', passport.authenticate('google', {
+  router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email']
   }));
   
-  router.get('/auth/google/callback',
+  router.get('/google/callback',
   passport.authenticate('google', {failureRedirect:'/', failureFlash: true}),
   (req, res) => {    
     req.session.user = req.user;    
@@ -20,7 +19,7 @@ router.get('/favicon.ico', (req, res) => res.status(204));
   }
 );
 
-router.get('/auth/getuser',
+router.get('/getuser',
       passport.authorize('google', { failureRedirect: '/login' }),
       (req, res)=>{
   return res.json(req.user);

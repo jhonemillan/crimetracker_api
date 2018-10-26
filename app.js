@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var passport = require('passport');
 var session = require('express-session');
-var indexRouter = require('./routes/index')(passport);
+var authRouter = require('./routes/auth')(passport);
 var usersRouter = require('./routes/users');
 var mapRouter = require('./routes/map');
 var helmet = require('helmet');
@@ -33,19 +33,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors());
-app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/map', mapRouter);
 
 //test hrk
-app.use(express.static(__dirname + '/public/osmreport'));
 
-app.get('/*',(req,res)=>{
-    res.sendFile(path.join(__dirname));
-});
+app.use(express.static(path.join(__dirname, '/public/osmreport')));
+
+
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 var port = (process.env.PORT || '3000');
 app.set('port', port);
-  
+
+app.get('/*', function(req,res) {
+    
+    res.sendFile(path.join(__dirname,'/public/osmreport/index.html'));
+    });
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
